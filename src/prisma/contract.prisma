@@ -1,0 +1,21 @@
+// use prisma-8
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String?
+  name      String?
+  todos     Todo[]
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  task   String?
+  userId  Int
+  user    User     @relation(fields: [authorId], references: [id])
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}
